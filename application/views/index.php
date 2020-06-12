@@ -225,7 +225,7 @@
     <section class="content">
         <div class="container-fluid">
             <div class="block-header">
-                <h2>DASHBOARD</h2>
+                <h2>DASHBOARD Test</h2>
             </div>
 
 
