@@ -2,40 +2,57 @@
 
 // -----------------------------------------------------------------------------
 // Get industry name by id
-function get_nama_kelas($id)
+
+// -----------------------------------------------------------------------------
+// Get category name by id
+function get_kategori_by_id($id)
 {
 	$CI = &get_instance();
-	return $CI->db->get_where('xx_kelas', array('id_kelas' => $id))->row_array()['judul_kelas'];
+	return $CI->db->get_where('xx_kategori', array('id_kategori' => $id))->row_array();
 }
 
-// Get industry name by id
-function get_kode_kelas($id)
-{
-	$CI = &get_instance();
-	return $CI->db->get_where('xx_kelas', array('id_kelas' => $id))->row_array()['kode_kelas'];
-}
 
-// Get industry name by id
-function get_nomor_pendaftaran($id)
+// -----------------------------------------------------------------------------
+// Get category name by id
+function get_satuan_by_id($id)
 {
 	$CI = &get_instance();
-	return $CI->db->get_where('xx_pendaftaran', array('id_pendaftaran' => $id))->row_array()['nomor_pendaftaran'];
+	return $CI->db->get_where('xx_satuan', array('id_satuan' => $id))->row_array();
 }
 
 // -----------------------------------------------------------------------------
 // Get category name by id
-function get_total_siswa($id)
+function get_nama_satuan_by_id($id)
 {
 	$CI = &get_instance();
-	return $CI->db->get_where('xx_pendaftaran', array('id_kelas' => $id))->num_rows();
+	return $CI->db->get_where('xx_satuan', array('id_satuan' => $id))->row_array()['kode_satuan'];
+}
+
+function get_nama_kategori_by_id($id)
+{
+	$CI = &get_instance();
+	return $CI->db->get_where('xx_kategori', array('id_kategori' => $id))->row_array()['nama_kategori'];
 }
 
 // -----------------------------------------------------------------------------
 // Get category name by id
-function get_kelas()
+function get_nama_kategori()
 {
 	$CI = &get_instance();
-	return $CI->db->get('xx_kelas')->result_array();
+	return $CI->db->get('xx_kategori')->result_array();
+}
+// -----------------------------------------------------------------------------
+// Get category name by id
+function get_satuan()
+{
+	$CI = &get_instance();
+	return $CI->db->get('xx_satuan')->result_array();
+}
+
+function get_obat()
+{
+	$CI = &get_instance();
+	return $CI->db->get('xx_obat')->result_array();
 }
 
 // -----------------------------------------------------------------------------
@@ -46,8 +63,8 @@ function get_jenis_kelamin()
 	return $CI->db->get('xx_jenis_kelamin')->result_array();
 }
 
-function get_nama_jenis_kelamin($id)
+function get_obat_by_id($id)
 {
 	$CI = &get_instance();
-	return $CI->db->get_where('xx_jenis_kelamin', array('value' => $id))->row_array()['nama'];
+	return $CI->db->get_where('xx_obat', array('id_obat' => $id))->row_array();
 }

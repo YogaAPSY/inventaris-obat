@@ -68,6 +68,8 @@ class Auth extends CI_Controller
 		}
 	}
 
+
+
 	//----------------------------------------------------------------------------
 	// Logout Function
 	public function logout()
