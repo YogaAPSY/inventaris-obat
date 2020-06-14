@@ -222,15 +222,7 @@
         <!-- #END# Right Sidebar -->
     </section>
 
-    <section class="content">
-        <div class="container-fluid">
-            <div class="block-header">
-                <h2>DASHBOARD Test</h2>
-            </div>
 
-
-        </div>
-    </section>
 
     <!-- Jquery Core Js -->
     <script src="plugins/jquery/jquery.min.js"></script>

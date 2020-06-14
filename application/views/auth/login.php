@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>Sign In | SINDI </title>
+    <title>Sign In | Admin </title>
     <link rel="icon" href="<?= base_url(); ?>assets/login/images/sindi.png" type="image/x-icon">
     <!-- Favicon-->
     <link rel="icon" href="<?= base_url(); ?>assets/login/favicon.ico" type="image/x-icon">
