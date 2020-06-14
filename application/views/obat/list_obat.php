@@ -75,6 +75,7 @@
     											<td><?= $o['created_at'] ?></td>
     											<td style="text-align: center;vertical-align: middle;">
     												<center>
+														<a href="#" id="btn_posisi" title="Tambah Stok" data-id="#" data-toggle="modal" data-target="#Modal"><i style="color:green;" class="material-icons">add_shopping_cart</i></a>
     													<a href="<?= base_url(); ?>obat/edit/<?= $o['id_obat'] ?>" data-toggle="tooltip" data-placement="top" title="Edit"><i style="color:#00b0e4;" class="material-icons">description</i></a>&nbsp;
     													<a href="#" id="btn_posisi" title="Delete" data-id="#" data-toggle="modal" data-target="#deleteModal"><i style="color:red;" class="material-icons">delete</i></a>
     												</center>
@@ -94,6 +95,26 @@
     	</div>
     	</div>
     </section>
+    <!-- Tambah Modal-->
+    <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    	<div class="modal-dialog" role="document">
+    		<div class="modal-content">
+    			<div class="modal-header">
+    				<h5 class="modal-title" id="exampleModalLabel">Tambah Stok Obat</h5>
+    				<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+    					<span aria-hidden="true">×</span>
+    				</button>
+    			</div>
+    			<div class="modal-body">
+					<input type="number" class="form-control" placeholder="Isi stok obat tambahan">
+				</div>
+    			<div class="modal-footer">
+    				<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+    				<a  class="btn btn-primary" href="#">Simpan</a>
+    			</div>
+    		</div>
+    	</div>
+    </div>
 
     <!-- Logout Modal-->
     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
