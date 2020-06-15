@@ -55,7 +55,7 @@
     										<th>Harga Beli</th>
     										<th>Harga Jual</th>
     										<th>Tanggal</th>
-    										<th style="text-align: center;">ACTION</th>
+    										<th style="text-align: center;width:100px">ACTION</th>
     									</tr>
     								</thead>
 
@@ -75,17 +75,17 @@
     											<td><?= $o['created_at'] ?></td>
     											<td style="text-align: center;vertical-align: middle;">
     												<center>
-
-    													<a href="#" id="btn_posisi" title="><?= ($this->session->userdata('status') == 2) ? 'Kurangi' : 'Tambah'; ?> Stok" data-id="#" data-toggle="modal" data-target="#Modal<?= $o['id_obat'] ?>"><i style="color:green;" class="material-icons">add_shopping_cart</i></a>
     													<a href="<?= base_url(); ?>obat/edit/<?= $o['id_obat'] ?>" data-toggle="tooltip" data-placement="top" title="Edit"><i style="color:#00b0e4;" class="material-icons">description</i></a>&nbsp;
+    													<a href="#" id="btn_posisi" title="Tambah Stok" data-id="#" data-toggle="modal" data-target="#ModalTambah<?= $o['id_obat'] ?>"><i style="color:green;" class="material-icons">add_circle_outline</i></a>
+    													<a href="#" id="btn_posisi" title="Kurangi Stok" data-id="#" data-toggle="modal" data-target="#Modal<?= $o['id_obat'] ?>"><i style="color:red;" class="material-icons">remove_circle_outline</i></a>
     													<a href="#" id="btn_posisi" title="Delete" data-id="#" data-toggle="modal" data-target="#deleteModal"><i style="color:red;" class="material-icons">delete</i></a>
     												</center>
     											</td>
     										</tr>
 
-    										<!-- Tambah Modal-->
+    										<!-- Kurang Modal-->
     										<div class="modal fade" id="Modal<?= $o['id_obat'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    											<div class="modal-dialog" role="document">
+    											<div class="modal-dialog modal-dialog-centered" role="document">
     												<div class="modal-content">
     													<div class="modal-header">
     														<h5 class="modal-title" id="exampleModalLabel">Tambah Stok Obat</h5>
@@ -114,17 +114,76 @@
 
     										</div>
 
+    										<!-- Tambah Modal-->
+    										<div class="modal fade" id="ModalTambah<?= $o['id_obat'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    											<div class="modal-dialog modal-dialog-centered" role="document">
+    												<div class="modal-content">
+    													<div class="modal-header">
+    														<h5 class="modal-title" id="exampleModalLabel">Tambah Stok Obat</h5>
+    														<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+    															<span aria-hidden="true">×</span>
+    														</button>
+    													</div>
+    													<?php $attributes = array('method' => 'post'); ?>
+
+    													<?php echo form_open('obat/obat_masuk/' . $o['id_obat'], $attributes); ?>
+    													<div class="modal-body">
+    														<label for="stok">Jumlah Obat</label>
+    														<input type="number" id="stokTambah" name="stok" class="form-control" data-id="<?= $o['stok'] ?>" placeholder="Jumlah obat" onblur="cekTambah()">
+    														<label for="invoice">No Invoice</label>
+    														<input type="text" id="invoiceTambah" name="no_invoice" class="form-control" placeholder="Masukkan nomor invoice">
+    													</div>
+    													<!-- Modal footer -->
+    													<div class="modal-footer">
+    														<input type="submit" name="submit" class="btn btn-primary" value="Simpan">
+    														<!-- <button type="button" class="btn btn-secondary">Simpan</button> -->
+
+    													</div>
+    													</form>
+    												</div>
+    											</div>
+
+    										</div>
+
     									<?php endforeach; ?>
 
     									<script>
     										function cek(id) {
     											var x = document.getElementById("stok").value;
     											var y = id;
-
     											if (x > y) {
-    												alert("Salah boy");
+    												swal({
+    													title: "Opps !!!",
+    													text: "Pengurangan stok tidak boleh lebih dari stok tersedia",
+    													showConfirmButton: false,
+    													type: 'error',
+    												});
+    												$('#stok').val('');
+    											} else if (x <= 0) {
+    												swal({
+    													title: "Opps !!!",
+    													text: "Pengurangan stok tidak boleh kurang dari 0",
+    													showConfirmButton: false,
+    													type: 'error',
+    												});
+    												$('#stok').val('');
     											} else {
-    												alert("bener Oi");
+
+    											}
+    										}
+
+    										function cekTambah() {
+    											var x = document.getElementById("stokTambah").value;
+    											if (x <= 0) {
+    												swal({
+    													title: "Opps !!!",
+    													text: "Pengurangan stok tidak boleh kurang dari 0",
+    													showConfirmButton: false,
+    													type: 'error',
+    												});
+    												$('#stokTambah').val('');
+    											} else {
+
     											}
     										}
     									</script>
