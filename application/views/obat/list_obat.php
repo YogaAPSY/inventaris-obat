@@ -98,7 +98,7 @@
     													<?php echo form_open('obat/obat_masuk/' . $o['id_obat'], $attributes); ?>
     													<div class="modal-body">
     														<label for="stok">Jumlah Obat</label>
-    														<input type="number" id="stok" name="stok" class="form-control" data-id="<?= $o['stok'] ?>" placeholder="Jumlah obat" onblur="cek()">
+    														<input type="number" id="stok" name="stok" class="form-control" data-id="<?= $o['stok'] ?>" placeholder="Jumlah obat" onblur="cek(<?= $o['stok'] ?>)">
     														<label for="invoice">No Invoice</label>
     														<input type="text" id="invoice" name="no_invoice" class="form-control" placeholder="Masukkan nomor invoice">
     													</div>
@@ -117,16 +117,16 @@
     									<?php endforeach; ?>
 
     									<script>
-    										function cek() {
-    													var x = document.getElementById("stok").value;
-    													var y = $(this).data('id');
-    													console.log(y);
-    													if (x > y) {
-    														alert("Salah boy");
-    													} else {
-    														alert("bener Oi");
-    													}
-    												}
+    										function cek(id) {
+    											var x = document.getElementById("stok").value;
+    											var y = id;
+
+    											if (x > y) {
+    												alert("Salah boy");
+    											} else {
+    												alert("bener Oi");
+    											}
+    										}
     									</script>
 
     								</tbody>
