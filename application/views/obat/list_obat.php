@@ -88,7 +88,7 @@
     											<div class="modal-dialog" role="document">
     												<div class="modal-content">
     													<div class="modal-header">
-    														<h5 class="modal-title" id="exampleModalLabel"><?= ($this->session->userdata('status') == 2) ? 'Kurangi' : 'Tambah'; ?> Stok Obat</h5>
+    														<h5 class="modal-title" id="exampleModalLabel">Tambah Stok Obat</h5>
     														<button class="close" type="button" data-dismiss="modal" aria-label="Close">
     															<span aria-hidden="true">×</span>
     														</button>
@@ -98,7 +98,7 @@
     													<?php echo form_open('obat/obat_masuk/' . $o['id_obat'], $attributes); ?>
     													<div class="modal-body">
     														<label for="stok">Jumlah Obat</label>
-    														<input type="number" id="stok" name="stok" class="form-control" placeholder="Jumlah obat">
+    														<input type="number" id="stok" name="stok" class="form-control" data-id="<?= $o['stok'] ?>" placeholder="Jumlah obat" onblur="cek()">
     														<label for="invoice">No Invoice</label>
     														<input type="text" id="invoice" name="no_invoice" class="form-control" placeholder="Masukkan nomor invoice">
     													</div>
@@ -111,8 +111,23 @@
     													</form>
     												</div>
     											</div>
+
     										</div>
+
     									<?php endforeach; ?>
+
+    									<script>
+    										function cek() {
+    													var x = document.getElementById("stok").value;
+    													var y = $(this).data('id');
+    													console.log(y);
+    													if (x > y) {
+    														alert("Salah boy");
+    													} else {
+    														alert("bener Oi");
+    													}
+    												}
+    									</script>
 
     								</tbody>
     							</table>
