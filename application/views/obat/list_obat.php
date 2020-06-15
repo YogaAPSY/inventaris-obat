@@ -54,7 +54,7 @@
     										<th>Stok</th>
     										<th>Harga Beli</th>
     										<th>Harga Jual</th>
-    										<th>Created</th>
+    										<th>Tanggal</th>
     										<th style="text-align: center;">ACTION</th>
     									</tr>
     								</thead>
