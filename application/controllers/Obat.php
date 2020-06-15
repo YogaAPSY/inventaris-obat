@@ -200,13 +200,21 @@ class Obat extends CI_Controller
 
 			$this->load->view('layout', $data);
 		} else {
+			$string = str_replace('.', ',', $this->input->post('harga_beli')); // Replaces all spaces with hyphens.
+
+			$harga_jual = preg_replace('/[^A-Za-z0-9\-]/', '', $string);
+
+			$string2 = str_replace('.', ',', $this->input->post('harga_beli'));
+
+			$harga_beli = preg_replace('/[^A-Za-z0-9\-]/', '', $string2);
+
 			$data = array(
 				'kode_obat' => $this->security->xss_clean($this->input->post('kode_obat')),
 				'nama_obat' => $this->security->xss_clean($this->input->post('nama_obat')),
 				'id_satuan' => $this->security->xss_clean($this->input->post('id_satuan')),
 				'id_kategori' => $this->security->xss_clean($this->input->post('id_kategori')),
-				'harga_beli' => $this->security->xss_clean($this->input->post('harga_beli')),
-				'harga_jual' => $this->security->xss_clean($this->input->post('harga_jual')),
+				'harga_beli' => $this->security->xss_clean($harga_jual),
+				'harga_jual' => $this->security->xss_clean($harga_beli),
 
 				'created_at' => date('Y-m-d  h:m:s')
 

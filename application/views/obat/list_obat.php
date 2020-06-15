@@ -75,7 +75,8 @@
     											<td><?= $o['created_at'] ?></td>
     											<td style="text-align: center;vertical-align: middle;">
     												<center>
-    													<a href="#" id="btn_posisi" title="Tambah Stok" data-id="#" data-toggle="modal" data-target="#Modal<?= $o['id_obat'] ?>"><i style="color:green;" class="material-icons">add_shopping_cart</i></a>
+
+    													<a href="#" id="btn_posisi" title="><?= ($this->session->userdata('status') == 2) ? 'Kurangi' : 'Tambah'; ?> Stok" data-id="#" data-toggle="modal" data-target="#Modal<?= $o['id_obat'] ?>"><i style="color:green;" class="material-icons">add_shopping_cart</i></a>
     													<a href="<?= base_url(); ?>obat/edit/<?= $o['id_obat'] ?>" data-toggle="tooltip" data-placement="top" title="Edit"><i style="color:#00b0e4;" class="material-icons">description</i></a>&nbsp;
     													<a href="#" id="btn_posisi" title="Delete" data-id="#" data-toggle="modal" data-target="#deleteModal"><i style="color:red;" class="material-icons">delete</i></a>
     												</center>
@@ -87,7 +88,7 @@
     											<div class="modal-dialog" role="document">
     												<div class="modal-content">
     													<div class="modal-header">
-    														<h5 class="modal-title" id="exampleModalLabel">Tambah Stok Obat</h5>
+    														<h5 class="modal-title" id="exampleModalLabel"><?= ($this->session->userdata('status') == 2) ? 'Kurangi' : 'Tambah'; ?> Stok Obat</h5>
     														<button class="close" type="button" data-dismiss="modal" aria-label="Close">
     															<span aria-hidden="true">×</span>
     														</button>
@@ -96,12 +97,14 @@
 
     													<?php echo form_open('obat/obat_masuk/' . $o['id_obat'], $attributes); ?>
     													<div class="modal-body">
-    														<input type="number" name="stok" class="form-control" placeholder="Jumlah obat">
-    														<input type="text" name="no_invoice" class="form-control" placeholder="Masukkan nomor invoice">
+    														<label for="stok">Jumlah Obat</label>
+    														<input type="number" id="stok" name="stok" class="form-control" placeholder="Jumlah obat">
+    														<label for="invoice">No Invoice</label>
+    														<input type="text" id="invoice" name="no_invoice" class="form-control" placeholder="Masukkan nomor invoice">
     													</div>
     													<!-- Modal footer -->
     													<div class="modal-footer">
-    														<input type="submit" name="submit" class="btn btn-secondary" value="Simpan">
+    														<input type="submit" name="submit" class="btn btn-primary" value="Simpan">
     														<!-- <button type="button" class="btn btn-secondary">Simpan</button> -->
 
     													</div>
