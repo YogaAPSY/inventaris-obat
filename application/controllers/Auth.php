@@ -14,8 +14,6 @@ class Auth extends CI_Controller
 	{
 		if ($this->session->userdata('is_user_login') == TRUE) {
 			redirect('/', 'refresh');
-		} elseif ($this->session->userdata('is_admin_login') == TRUE) {
-			redirect('admin/dashboard', 'refresh');
 		}
 
 		if ($this->input->post('login')) {
@@ -44,9 +42,10 @@ class Auth extends CI_Controller
 				if ($result) {
 					$login_data = array(
 						'id_user' => $data_user['id_user'],
-						'email' => $data_user['email'],
+						'status' => $data_user['status'],
 						'username' => $data_user['username'],
 						'nama' => $data_user['nama'],
+						'is_active' => $data_user['is_active'],
 						'is_user_login' => TRUE
 					);
 
@@ -54,7 +53,7 @@ class Auth extends CI_Controller
 
 					$user_id = $this->session->userdata('id_user');
 					$this->session->set_flashdata('message', 'Anda sudah berhasil login!');
-					redirect(base_url('home'), 'refresh');
+					redirect(base_url('dashboard'), 'refresh');
 				} else {
 					$this->session->set_flashdata('abort', 'Email atau Password yang anda masukkan salah.');
 					redirect(base_url('auth/login'), 'refresh');

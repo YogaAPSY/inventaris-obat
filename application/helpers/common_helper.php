@@ -11,6 +11,27 @@ function get_kategori_by_id($id)
 	return $CI->db->get_where('xx_kategori', array('id_kategori' => $id))->row_array();
 }
 
+// -----------------------------------------------------------------------------
+// Get category name by id
+function get_stok_by_id($id)
+{
+	$CI = &get_instance();
+	return $CI->db->get_where('xx_obat', array('id_obat' => $id))->row_array()['stok'];
+}
+
+// -----------------------------------------------------------------------------
+// Get category name by id
+function get_harga_jual_by_id($id)
+{
+	$CI = &get_instance();
+	return $CI->db->get_where('xx_obat', array('id_obat' => $id))->row_array()['harga_jual'];
+}
+
+function get_harga_beli_by_id($id)
+{
+	$CI = &get_instance();
+	return $CI->db->get_where('xx_obat', array('id_obat' => $id))->row_array()['harga_beli'];
+}
 
 // -----------------------------------------------------------------------------
 // Get category name by id

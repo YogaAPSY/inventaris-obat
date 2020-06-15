@@ -6,12 +6,17 @@ class Dashboard extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('auth_model', 'auth_model');
+		$this->load->model('dashboard_model', 'dashboard_model');
 	}
 
 	public function index()
 	{
 		$data['title'] = 'dashboard';
+		$data['total_user'] = $this->dashboard_model->total('xx_users');
+
+		$data['total_obat'] = $this->dashboard_model->total('xx_obat');
+		// $data['total_keluar'] = $this->home_model->pemasukan('xx_pendaftaran');
+		// $data['total_masuk'] = $this->home_model->pemasukan('xx_admin');
 		$data['layout'] = 'dashboard';
 		$this->load->view('layout', $data);
 	}
