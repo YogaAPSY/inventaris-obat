@@ -67,7 +67,7 @@
                                                 <td>13 Mei 1992</td>
                                                 <td style="text-align: center;vertical-align: middle;">
                                                     <center>
-                                                        <a href="<?= base_url('User/edit/' ?>" data-toggle="tooltip" data-placement="top" title="Edit"><i style="color:#00b0e4;" class="material-icons">description</i></a>&nbsp;
+                                                        <a href="<?= base_url('User/edit/') ?>" data-toggle="tooltip" data-placement="top" title="Edit"><i style="color:#00b0e4;" class="material-icons">description</i></a>&nbsp;
                                                         <!-- <a href="#" id="btn_posisi" title="Delete" data-id="" data-toggle="modal" data-target="#deleteModal"><i style="color:red;" class="material-icons">delete</i></a> -->
                                                     </center>
                                                 </td>

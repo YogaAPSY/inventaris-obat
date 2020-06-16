@@ -23,6 +23,7 @@
 <!-- ChartJs -->
 <script src="<?= base_url(); ?>assets/AdminBsb/plugins/chartjs/Chart.bundle.js"></script>
 
+
 <!-- Flot Charts Plugin Js -->
 <script src="<?= base_url(); ?>assets/AdminBsb/plugins/flot-charts/jquery.flot.js"></script>
 <script src="<?= base_url(); ?>assets/AdminBsb/plugins/flot-charts/jquery.flot.resize.js"></script>
@@ -145,5 +146,72 @@
 		} else {
 			console.log('ini salah');
 		}
+	}
+</script>
+
+<script>
+	$(function() {
+		new Chart(document.getElementById("line_chart").getContext("2d"), getChartJs('line'));
+		new Chart(document.getElementById("pie_chart").getContext("2d"), getChartJs('pie'));
+	});
+
+	function getChartJs(type) {
+		var config = null;
+
+		if (type === 'line') {
+			config = {
+				type: 'line',
+				data: {
+					labels: ["January", "February", "March", "April", "May", "June", "July"],
+					datasets: [{
+						label: "My First dataset",
+						data: [65, 59, 80, 81, 56, 55, 40],
+						borderColor: 'rgba(0, 188, 212, 0.75)',
+						backgroundColor: 'rgba(0, 188, 212, 0.3)',
+						pointBorderColor: 'rgba(0, 188, 212, 0)',
+						pointBackgroundColor: 'rgba(0, 188, 212, 0.9)',
+						pointBorderWidth: 1
+					}, {
+						label: "My Second dataset",
+						data: [28, 48, 40, 19, 86, 27, 90],
+						borderColor: 'rgba(233, 30, 99, 0.75)',
+						backgroundColor: 'rgba(233, 30, 99, 0.3)',
+						pointBorderColor: 'rgba(233, 30, 99, 0)',
+						pointBackgroundColor: 'rgba(233, 30, 99, 0.9)',
+						pointBorderWidth: 1
+					}]
+				},
+				options: {
+					responsive: true,
+					legend: false
+				}
+			}
+		} else if (type === 'pie') {
+			config = {
+				type: 'pie',
+				data: {
+					datasets: [{
+						data: [225, 50, 100, 40],
+						backgroundColor: [
+							"rgb(233, 30, 99)",
+							"rgb(255, 193, 7)",
+							"rgb(0, 188, 212)",
+							"rgb(139, 195, 74)"
+						],
+					}],
+					labels: [
+						"Pink",
+						"Amber",
+						"Cyan",
+						"Light Green"
+					]
+				},
+				options: {
+					responsive: true,
+					legend: false
+				}
+			}
+		}
+		return config;
 	}
 </script>
