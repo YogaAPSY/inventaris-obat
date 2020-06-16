@@ -27,7 +27,7 @@
 								<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
 									<div class="form-group">
 										<div class="form-line">
-											<input type="text" name="kode_kategori" value="<?= $kategori['kode_kategori'] ?>" class="form-control" placeholder="Ex : NARK2020" value="" required autocomplete="off" />
+											<input type="text" name="kode_kategori" value="<?= $kategori['kode_kategori'] ?>" class="form-control" placeholder="Ex : NARK2020" required autocomplete="off" />
 										</div>
 									</div>
 								</div>
@@ -41,7 +41,7 @@
 								<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
 									<div class="form-group">
 										<div class="form-line">
-											<input type="text" name="kategori" value="<?= $kategori['nama_kategori'] ?>" class="form-control" placeholder="Ex : Flu dan Batuk" value="" required autocomplete="off" />
+											<input type="text" name="kategori" value="<?= $kategori['nama_kategori'] ?>" class="form-control" placeholder="Ex : Flu dan Batuk" required autocomplete="off" />
 										</div>
 									</div>
 								</div>

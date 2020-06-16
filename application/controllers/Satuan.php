@@ -16,7 +16,7 @@ class Satuan extends CI_Controller
 
 	public function index()
 	{
-		$data['title'] = 'satuan list';
+		$data['title'] = 'satuan';
 		$data['satuan'] = get_satuan();
 		$data['layout'] = 'satuan/list_satuan';
 		$this->load->view('layout', $data);
@@ -28,7 +28,7 @@ class Satuan extends CI_Controller
 
 			$this->validation('add');
 		} else {
-			$data['title'] = 'satuan add';
+			$data['title'] = 'satuan';
 			$data['layout'] = 'satuan/add_satuan';
 			$this->load->view('layout', $data);
 		}
@@ -41,7 +41,7 @@ class Satuan extends CI_Controller
 			$this->validation('edit', $id);
 		} else {
 			$data['satuan'] = get_satuan_by_id($id);
-			$data['title'] = 'satuan edit';
+			$data['title'] = 'satuan';
 			$data['layout'] = 'satuan/edit_satuan';
 			$this->load->view('layout', $data);
 		}

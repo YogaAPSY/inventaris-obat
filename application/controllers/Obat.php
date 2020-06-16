@@ -14,7 +14,7 @@ class Obat extends CI_Controller
 
 	public function index()
 	{
-		$data['title'] = 'obat list';
+		$data['title'] = 'obat';
 		$data['obat'] = get_obat();
 
 		$data['layout'] = 'obat/list_obat';
@@ -95,7 +95,7 @@ class Obat extends CI_Controller
 				redirect(base_url('obat'));
 			}
 		} else {
-			$data['title'] = 'obat list';
+			$data['title'] = 'obat';
 			$data['obat'] = get_obat();
 			$data['layout'] = 'obat/list_obat';
 			$this->load->view('layout', $data);
@@ -110,7 +110,7 @@ class Obat extends CI_Controller
 		} else {
 			$data['satuan'] = get_satuan();
 			$data['kategoris'] = get_nama_kategori();
-			$data['title'] = 'obat add';
+			$data['title'] = 'obat';
 			$data['page'] = 'add';
 
 			$data['layout'] = 'obat/form_obat';
@@ -126,7 +126,7 @@ class Obat extends CI_Controller
 		} else {
 			$data['satuan'] = get_satuan();
 			$data['kategoris'] = get_nama_kategori();
-			$data['title'] = 'obat edit';
+			$data['title'] = 'obat';
 			$data['obat'] = get_obat_by_id($id);
 			$data['page'] = 'edit';
 			$data['layout'] = 'obat/form_obat';

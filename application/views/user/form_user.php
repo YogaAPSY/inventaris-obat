@@ -67,8 +67,10 @@
             							<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
             								<div class="form-group">
             									<div class="form-line">
-            										<input type="text" value="<?= isset($user['username']) ? $user['username'] : ''; ?>" class="form-control" placeholder="Ex: blablacrocxxx" name="username" required autocomplete="off" <?= isset($user['username']) ? 'disabled' : ''; ?> />
+            										<input type="text" value="<?= isset($user['username']) ? $user['username'] : ''; ?>" class="form-control" placeholder="Ex: blablacrocxxx" name="username" required autocomplete="off" <?= isset($user['username']) ? 'readonly' : ''; ?> />
+
             									</div>
+            									<span style="color: red;">*<small>Note : username tidak bisa diubah/edit</small></span>
             								</div>
             							</div>
             						</div>

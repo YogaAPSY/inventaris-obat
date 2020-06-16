@@ -16,8 +16,8 @@ class User extends CI_Controller
 
 	public function index()
 	{
-		$data['title'] = 'user list';
-		// $data['satuan'] = get_satuan();
+		$data['title'] = 'user';
+		$data['users'] = get_user();
 
 		$data['layout'] = 'user/list_user';
 		$this->load->view('layout', $data);
@@ -30,7 +30,7 @@ class User extends CI_Controller
 
 			$this->validation('add');
 		} else {
-			$data['title'] = 'satuan list';
+			$data['title'] = 'user';
 			// $data['satuan'] = get_satuan();
 			$data['page'] = 'add';
 			$data['layout'] = 'user/form_user';
@@ -45,7 +45,7 @@ class User extends CI_Controller
 
 			$this->validation('edit', $id);
 		} else {
-			$data['title'] = 'satuan list';
+			$data['title'] = 'user';
 			$data['user'] = get_user_by_id($id);
 			$data['page'] = 'edit';
 			$data['layout'] = 'user/form_user';
@@ -138,7 +138,7 @@ class User extends CI_Controller
 
 			$data = array(
 				'username' => $this->security->xss_clean($this->input->post('username')),
-
+				'created_by' => $this->session->userdata('nama'),
 				'status' => $this->security->xss_clean($this->input->post('status')),
 				'nama' => $this->security->xss_clean($this->input->post('nama')),
 

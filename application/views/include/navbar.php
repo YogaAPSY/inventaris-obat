@@ -60,14 +60,14 @@
     		<div class="menu">
     			<ul class="list">
     				<li class="header">MAIN NAVIGATION</li>
-    				<li class="active">
+    				<li class="<?php echo ($title == 'dashboard') ? 'active' : ''; ?>">
     					<a href="<?= base_url(); ?>Dashboard">
     						<i class="material-icons">home</i>
     						<span>Home</span>
     					</a>
     				</li>
     				<?php if ($this->session->userdata('status') != 1) : ?>
-    					<li>
+    					<li class="<?php echo ($title == 'kategori') ? 'active' : ''; ?>">
     						<a href="<?= base_url(); ?>Kategori">
     							<i class="material-icons">layers</i>
     							<span>Kategori</span>
@@ -76,14 +76,14 @@
     				<?php endif; ?>
 
 
-    				<li>
+    				<li class="<?php echo ($title == 'obat') ? 'active' : ''; ?>">
     					<a href="<?= base_url(); ?>Obat"">
                             <i class=" material-icons">add_shopping_cart</i>
     						<span>Obat</span>
     					</a>
     				</li>
     				<?php if ($this->session->userdata('status') != 1) : ?>
-    					<li>
+    					<li class="<?php echo ($title == 'satuan') ? 'active' : ''; ?>">
     						<a href="<?= base_url(); ?>Satuan"">
                             <i class=" material-icons">account_balance_wallet</i>
     							<span>Satuan</span>
@@ -91,7 +91,7 @@
     					</li>
 
 
-    					<li>
+    					<li class="<?php echo ($title == 'laporan') ? 'active' : ''; ?>">
     						<a href="<?= base_url(); ?>Laporan">
     							<i class=" material-icons">view_list</i>
     							<span>Laporan</span>
@@ -99,7 +99,7 @@
     					</li>
 
 
-    					<li>
+    					<li class="<?php echo ($title == 'user') ? 'active' : ''; ?>">
     						<a href="<?= base_url(); ?>User">
     							<i class=" material-icons">local_library</i>
     							<span>Managment_user</span>
@@ -112,7 +112,7 @@
     		<!-- Footer -->
     		<div class="legal">
     			<div class="copyright">
-    				&copy; 2020 <a href="javascript:void(0);">Created By </a>.
+    				&copy; 2020 <a href="javascript:void(0);">Created By Anisa</a>.
     			</div>
     			<div class="version">
     				<b>Version: </b> 1.0

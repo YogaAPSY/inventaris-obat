@@ -16,7 +16,7 @@ class Laporan extends CI_Controller
 
 	public function index()
 	{
-		$data['title'] = 'laporan list';
+		$data['title'] = 'laporan';
 		$data['laporan'] = $this->laporan_model->list_laporan();
 
 		$data['layout'] = 'laporan/list_laporan';

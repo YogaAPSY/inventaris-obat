@@ -13,6 +13,7 @@ function get_user_by_id($id)
 	return $CI->db->get_where('xx_users', array('id_user' => $id))->row_array();
 }
 
+
 function get_stok_by_id($id)
 {
 	$CI = &get_instance();
@@ -70,6 +71,11 @@ function get_obat()
 	return $CI->db->get('xx_obat')->result_array();
 }
 
+function get_user()
+{
+	$CI = &get_instance();
+	return $CI->db->get('xx_users')->result_array();
+}
 
 function get_obat_by_id($id)
 {
