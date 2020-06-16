@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 16, 2020 at 07:54 AM
+-- Generation Time: Jun 16, 2020 at 06:01 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.2
 
@@ -62,6 +62,18 @@ CREATE TABLE `xx_laporan` (
   `created_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `xx_laporan`
+--
+
+INSERT INTO `xx_laporan` (`id_laporan`, `id_obat`, `no_invoice`, `operator`, `jumlah`, `pendapatan`, `status`, `created_at`) VALUES
+(1, 1, 'Masuk1', 'Apoteker', 10, 200000, 2, '2020-06-16 04:06:02'),
+(2, 2, 'Masuk2', 'Apoteker', 15, 330000, 2, '2020-06-16 04:06:10'),
+(3, 1, 'Keluar1', 'Apoteker', 2, 45600, 1, '2020-06-16 04:06:17'),
+(4, 3, 'Masuk3', 'Apoteker', 19, 1387000, 2, '2020-06-16 04:06:28'),
+(5, 3, 'Keluar2', 'Apoteker', 5, 380500, 1, '2020-06-16 04:06:35'),
+(6, 4, 'Masuk4', 'Apoteker', 29, 638000, 2, '2020-06-16 04:06:44');
+
 -- --------------------------------------------------------
 
 --
@@ -85,10 +97,10 @@ CREATE TABLE `xx_obat` (
 --
 
 INSERT INTO `xx_obat` (`id_obat`, `kode_obat`, `id_satuan`, `id_kategori`, `nama_obat`, `stok`, `harga_beli`, `harga_jual`, `created_at`) VALUES
-(1, 'obat1', 3, 1, 'PANADOL 500 ML 10 KAPLET', 0, 20000, 22800, '2020-06-16 06:06:00'),
-(2, 'paract', 3, 1, 'PARACETAMOL 500 MG 10 KAPLET', 0, 22000, 24000, '2020-06-16 06:06:54'),
-(3, 'bsvx', 2, 2, 'BISOLVON EXTRA SIRUP 60 ML', 0, 73000, 76100, '2020-06-16 06:06:54'),
-(4, 'PCNF', 3, 2, 'PANADOL COLD DAN FLU 10 KAPLET', 0, 22000, 24600, '2020-06-16 06:06:45');
+(1, 'obat1', 3, 1, 'PANADOL 500 ML 10 KAPLET', 8, 20000, 22800, '2020-06-16 06:06:00'),
+(2, 'paract', 3, 1, 'PARACETAMOL 500 MG 10 KAPLET', 15, 22000, 24000, '2020-06-16 06:06:54'),
+(3, 'bsvx', 2, 2, 'BISOLVON EXTRA SIRUP 60 ML', 14, 73000, 76100, '2020-06-16 06:06:54'),
+(4, 'PCNF', 3, 2, 'PANADOL COLD DAN FLU 10 KAPLET', 29, 22000, 24600, '2020-06-16 06:06:45');
 
 -- --------------------------------------------------------
 
@@ -128,6 +140,7 @@ CREATE TABLE `xx_users` (
   `nama` varchar(100) NOT NULL,
   `is_active` int(11) NOT NULL DEFAULT 1 COMMENT '1. active, 2. tidak aktif',
   `status` int(11) NOT NULL COMMENT '1. pegawai, 2. apoteker, 3.gudang',
+  `created_by` varchar(50) NOT NULL DEFAULT 'master',
   `created_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -135,11 +148,11 @@ CREATE TABLE `xx_users` (
 -- Dumping data for table `xx_users`
 --
 
-INSERT INTO `xx_users` (`id_user`, `username`, `password`, `nama`, `is_active`, `status`, `created_at`) VALUES
-(1, 'apoteker', '$2y$10$9qpJg9s4l/U3hvOAmhAmEuds7JADHYjocpxo0lR8Tyo1P4vp1vx6e', 'Apoteker', 1, 2, '2020-06-15 17:47:46'),
-(2, 'gudang', '$2y$10$9qpJg9s4l/U3hvOAmhAmEuds7JADHYjocpxo0lR8Tyo1P4vp1vx6e', 'admin gudang', 1, 2, '2020-06-15 19:50:51'),
-(3, 'pegawai', '$2y$10$9qpJg9s4l/U3hvOAmhAmEuds7JADHYjocpxo0lR8Tyo1P4vp1vx6e', 'Pegawai 1', 1, 1, '2020-06-15 19:51:12'),
-(4, 'yogaapsy', '$2y$10$Z3xzkeWb3fD7H4occMuF/uxyGx1VrEwr2bbwoajkk4Kke2Z/fksjO', 'Yoga Anugrah Pratama.SY', 1, 2, '2020-06-16 00:00:00');
+INSERT INTO `xx_users` (`id_user`, `username`, `password`, `nama`, `is_active`, `status`, `created_by`, `created_at`) VALUES
+(1, 'apoteker', '$2y$10$nrkBu349UQRD04U/iKYg..R4ct/y9BsRWGrSDto3WlPlzZwfhF8Pa', 'Apoteker', 1, 2, 'Apoteker', '2020-06-16 00:00:00'),
+(2, 'gudang', '$2y$10$hAPLTr9d1lcDTvfwguqDaea2rdK.DTgxZWBL53Y0cjbhQyj2.ogJm', 'admin gudang', 1, 2, 'Apoteker', '2020-06-16 00:00:00'),
+(3, 'pegawai', '$2y$10$EgM6Qd6/y9bRSOCLD4KwkOVh1eeT3haPWW/HsHZDy4jPk7chNuNNC', 'Pegawai 1', 1, 1, 'Apoteker', '2020-06-16 00:00:00'),
+(4, 'yogaapsy', '$2y$10$ta2dZfjDgYo/z/2px7r1qu4JJ.1IuX6POGp64DC3Nx7BXHpSsuMXG', 'Yoga Anugrah Pratama.SY', 1, 2, 'Apoteker', '2020-06-16 00:00:00');
 
 --
 -- Indexes for dumped tables
@@ -189,7 +202,7 @@ ALTER TABLE `xx_kategori`
 -- AUTO_INCREMENT for table `xx_laporan`
 --
 ALTER TABLE `xx_laporan`
-  MODIFY `id_laporan` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_laporan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `xx_obat`
