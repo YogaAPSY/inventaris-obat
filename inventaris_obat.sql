@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 15, 2020 at 03:05 PM
+-- Generation Time: Jun 16, 2020 at 07:46 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.2
 
@@ -40,9 +40,10 @@ CREATE TABLE `xx_kategori` (
 --
 
 INSERT INTO `xx_kategori` (`id_kategori`, `kode_kategori`, `nama_kategori`, `created_at`) VALUES
-(1, 'antb', 'Antibiotik', '2020-06-14 00:00:00'),
-(2, 'antv', 'Antivirus', '2020-06-14 00:00:00'),
-(4, 'obtank', 'Obat Anak', '2020-06-14 12:06:05');
+(1, 'demam123', 'Demam', '2020-06-16 06:06:27'),
+(2, 'Flunbatuk', 'Flu dan Batuk', '2020-06-16 06:06:09'),
+(3, 'Antibiotik1', 'Antibiotik', '2020-06-16 06:06:29'),
+(4, 'hrbl', 'Herbal', '2020-06-16 06:06:47');
 
 -- --------------------------------------------------------
 
@@ -54,25 +55,12 @@ CREATE TABLE `xx_laporan` (
   `id_laporan` int(11) NOT NULL,
   `id_obat` int(11) NOT NULL,
   `no_invoice` varchar(50) NOT NULL,
+  `operator` varchar(50) NOT NULL,
   `jumlah` int(11) NOT NULL,
   `pendapatan` bigint(20) NOT NULL,
   `status` int(11) NOT NULL COMMENT '1. keluar 2. masuk\r\n',
   `created_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `xx_laporan`
---
-
-INSERT INTO `xx_laporan` (`id_laporan`, `id_obat`, `no_invoice`, `jumlah`, `pendapatan`, `status`, `created_at`) VALUES
-(1, 1, 'dasjkasdjasdj', 10, 100000, 2, '2020-06-15 01:06:53'),
-(2, 1, 'asdasd', 5, 50000, 2, '2020-06-15 01:06:46'),
-(3, 1, 'asddasad', 5, 60000, 1, '2020-06-15 02:06:44'),
-(4, 1, 'iniinvoice', 2, 24000, 1, '2020-06-15 02:06:07'),
-(5, 1, 'asdasdasd', 8, 96000, 1, '2020-06-15 02:06:42'),
-(6, 1, 'Tes123', 10, 100000, 2, '2020-06-15 02:06:14'),
-(7, 2, 'Tes456', 20, 200000, 2, '2020-06-15 02:06:24'),
-(8, 2, 'Tes678', 20, 200000, 2, '2020-06-15 02:06:51');
 
 -- --------------------------------------------------------
 
@@ -97,8 +85,10 @@ CREATE TABLE `xx_obat` (
 --
 
 INSERT INTO `xx_obat` (`id_obat`, `kode_obat`, `id_satuan`, `id_kategori`, `nama_obat`, `stok`, `harga_beli`, `harga_jual`, `created_at`) VALUES
-(1, 'asdasdads', 2, 1, 'asdasdasdasd', 10, 10000, 12000, '2020-06-14 12:06:28'),
-(2, 'tes', 2, 4, 'tes', 40, 10000, 10000, '2020-06-15 02:06:32');
+(1, 'obat1', 3, 1, 'PANADOL 500 ML 10 KAPLET', 0, 20000, 22800, '2020-06-16 06:06:00'),
+(2, 'paract', 3, 1, 'PARACETAMOL 500 MG 10 KAPLET', 0, 22000, 24000, '2020-06-16 06:06:54'),
+(3, 'bsvx', 2, 2, 'BISOLVON EXTRA SIRUP 60 ML', 0, 73000, 76100, '2020-06-16 06:06:54'),
+(4, 'PCNF', 3, 2, 'PANADOL COLD DAN FLU 10 KAPLET', 0, 22000, 24600, '2020-06-16 06:06:45');
 
 -- --------------------------------------------------------
 
@@ -118,7 +108,12 @@ CREATE TABLE `xx_satuan` (
 --
 
 INSERT INTO `xx_satuan` (`id_satuan`, `kode_satuan`, `nama_satuan`, `created_at`) VALUES
-(2, 'KG', 'Kilogram', '2020-06-14 12:06:03');
+(1, 'pcs', 'pcs', '2020-06-16 06:06:04'),
+(2, 'botol', 'botol', '2020-06-16 06:06:12'),
+(3, 'Strip', 'Strip', '2020-06-16 06:06:49'),
+(4, 'Sachet', 'Sachet', '2020-06-16 06:06:04'),
+(5, 'Box', 'Box', '2020-06-16 06:06:28'),
+(6, 'Tube', 'Tube', '2020-06-16 06:06:52');
 
 -- --------------------------------------------------------
 
@@ -142,8 +137,9 @@ CREATE TABLE `xx_users` (
 
 INSERT INTO `xx_users` (`id_user`, `username`, `password`, `nama`, `is_active`, `status`, `created_at`) VALUES
 (1, 'apoteker', '$2y$10$9qpJg9s4l/U3hvOAmhAmEuds7JADHYjocpxo0lR8Tyo1P4vp1vx6e', 'Apoteker', 1, 2, '2020-06-15 17:47:46'),
-(2, 'gudang', '$2y$10$9qpJg9s4l/U3hvOAmhAmEuds7JADHYjocpxo0lR8Tyo1P4vp1vx6e', 'admin gudang', 1, 3, '2020-06-15 19:50:51'),
-(3, 'pegawai', '$2y$10$9qpJg9s4l/U3hvOAmhAmEuds7JADHYjocpxo0lR8Tyo1P4vp1vx6e', 'Pegawai 1', 1, 1, '2020-06-15 19:51:12');
+(2, 'gudang', '$2y$10$9qpJg9s4l/U3hvOAmhAmEuds7JADHYjocpxo0lR8Tyo1P4vp1vx6e', 'admin gudang', 1, 2, '2020-06-15 19:50:51'),
+(3, 'pegawai', '$2y$10$9qpJg9s4l/U3hvOAmhAmEuds7JADHYjocpxo0lR8Tyo1P4vp1vx6e', 'Pegawai 1', 1, 1, '2020-06-15 19:51:12'),
+(4, 'yogaapsy', '$2y$10$Z3xzkeWb3fD7H4occMuF/uxyGx1VrEwr2bbwoajkk4Kke2Z/fksjO', 'Yoga Anugrah Pratama.SY', 1, 2, '2020-06-16 00:00:00');
 
 --
 -- Indexes for dumped tables
@@ -193,25 +189,25 @@ ALTER TABLE `xx_kategori`
 -- AUTO_INCREMENT for table `xx_laporan`
 --
 ALTER TABLE `xx_laporan`
-  MODIFY `id_laporan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_laporan` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `xx_obat`
 --
 ALTER TABLE `xx_obat`
-  MODIFY `id_obat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_obat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `xx_satuan`
 --
 ALTER TABLE `xx_satuan`
-  MODIFY `id_satuan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_satuan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `xx_users`
 --
 ALTER TABLE `xx_users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
