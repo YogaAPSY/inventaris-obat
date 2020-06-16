@@ -18,7 +18,7 @@ class Obat extends CI_Controller
 		$this->load->view('layout', $data);
 	}
 
-	public function obat_masuk($id)
+	public function transaksi($uri, $id)
 	{
 		if ($this->input->post('submit')) {
 
@@ -26,7 +26,7 @@ class Obat extends CI_Controller
 			$jumlah = $this->input->post('stok');
 			$stok = get_stok_by_id($id);
 			$total = 0;
-			if ($this->session->userdata('status') == 2) {
+			if ($uri == 'keluar') {
 
 				if ($stok >= $jumlah) {
 					$total = $stok - $jumlah;
@@ -52,7 +52,8 @@ class Obat extends CI_Controller
 					$result = false;
 					$result2 = false;
 				}
-			} elseif ($this->session->userdata('status') == 3) {
+			} elseif ($uri == 'masuk') {
+
 				$total = $stok + $jumlah;
 				$harga_jual = get_harga_beli_by_id($id);
 				$pendapatan = $jumlah * $harga_jual;

@@ -76,8 +76,8 @@
     											<td style="text-align: center;vertical-align: middle;">
     												<center>
     													<a href="<?= base_url(); ?>obat/edit/<?= $o['id_obat'] ?>" data-toggle="tooltip" data-placement="top" title="Edit"><i style="color:#00b0e4;" class="material-icons">description</i></a>&nbsp;
-    													<a href="#" id="btn_posisi" title="Tambah Stok" data-id="#" data-toggle="modal" data-target="#ModalTambah<?= $o['id_obat'] ?>"><i style="color:green;" class="material-icons">add_circle_outline</i></a>
-    													<a href="#" id="btn_posisi" title="Kurangi Stok" data-id="#" data-toggle="modal" data-target="#Modal<?= $o['id_obat'] ?>"><i style="color:red;" class="material-icons">remove_circle_outline</i></a>
+    													<a href="#" title="Tambah Stok" data-id="#" data-toggle="modal" data-target="#ModalTambah<?= $o['id_obat'] ?>"><i style="color:green;" class="material-icons">add_circle_outline</i></a>
+    													<a href="#" title="Kurangi Stok" data-id="#" data-toggle="modal" data-target="#Modal<?= $o['id_obat'] ?>"><i style="color:red;" class="material-icons">remove_circle_outline</i></a>
     													<a href="#" id="btn_posisi" title="Delete" data-id="#" data-toggle="modal" data-target="#deleteModal"><i style="color:red;" class="material-icons">delete</i></a>
     												</center>
     											</td>
@@ -95,12 +95,12 @@
     													</div>
     													<?php $attributes = array('method' => 'post'); ?>
 
-    													<?php echo form_open('obat/obat_masuk/' . $o['id_obat'], $attributes); ?>
+    													<?php echo form_open('obat/transaksi/keluar/' . $o['id_obat'], $attributes); ?>
     													<div class="modal-body">
     														<label for="stok">Jumlah Obat</label>
-    														<input type="number" id="stok" name="stok" class="form-control" data-id="<?= $o['stok'] ?>" placeholder="Jumlah obat" onblur="cek(<?= $o['stok'] ?>)">
+    														<input type="number" id="stok<?= $o['id_obat'] ?>" name="stok" class="form-control" placeholder="Jumlah obat" onblur="cek(<?= $o['stok'] ?>, <?= $o['id_obat'] ?>)">
     														<label for="invoice">No Invoice</label>
-    														<input type="text" id="invoice" name="no_invoice" class="form-control" placeholder="Masukkan nomor invoice">
+    														<input type="text" name="no_invoice" class="form-control" placeholder="Masukkan nomor invoice">
     													</div>
     													<!-- Modal footer -->
     													<div class="modal-footer">
@@ -126,12 +126,12 @@
     													</div>
     													<?php $attributes = array('method' => 'post'); ?>
 
-    													<?php echo form_open('obat/obat_masuk/' . $o['id_obat'], $attributes); ?>
+    													<?php echo form_open('obat/transaksi/masuk/' . $o['id_obat'], $attributes); ?>
     													<div class="modal-body">
     														<label for="stok">Jumlah Obat</label>
-    														<input type="number" id="stokTambah" name="stok" class="form-control" data-id="<?= $o['stok'] ?>" placeholder="Jumlah obat" onblur="cekTambah()">
+    														<input type="number" id="stokTambah<?= $o['id_obat'] ?>" name="stok" class="form-control" placeholder="Jumlah obat" onblur="cekTambah(<?= $o['id_obat'] ?>)">
     														<label for="invoice">No Invoice</label>
-    														<input type="text" id="invoiceTambah" name="no_invoice" class="form-control" placeholder="Masukkan nomor invoice">
+    														<input type="text" name="no_invoice" class="form-control" placeholder="Masukkan nomor invoice">
     													</div>
     													<!-- Modal footer -->
     													<div class="modal-footer">
@@ -148,8 +148,11 @@
     									<?php endforeach; ?>
 
     									<script>
-    										function cek(id) {
-    											var x = document.getElementById("stok").value;
+    										function cek(id, obat) {
+
+    											var x = document.getElementById("stok" + obat).value;
+    											console.log(x);
+    											console.log(id);
     											var y = id;
     											if (x > y) {
     												swal({
@@ -172,8 +175,8 @@
     											}
     										}
 
-    										function cekTambah() {
-    											var x = document.getElementById("stokTambah").value;
+    										function cekTambah(id) {
+    											var x = document.getElementById("stokTambah" + id).value;
     											if (x <= 0) {
     												swal({
     													title: "Opps !!!",
