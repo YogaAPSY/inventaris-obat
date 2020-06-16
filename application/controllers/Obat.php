@@ -7,6 +7,9 @@ class Obat extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('obat_model', 'obat_model');
+		if (!$this->session->userdata('is_user_login')) {
+			redirect('auth/login');
+		}
 	}
 
 	public function index()
@@ -28,7 +31,7 @@ class Obat extends CI_Controller
 			$total = 0;
 			if ($uri == 'keluar') {
 
-				if ($stok >= $jumlah) {
+				if ($stok >= $jumlah && $jumlah > 0) {
 					$total = $stok - $jumlah;
 					$harga_jual = get_harga_jual_by_id($id);
 					$pendapatan = $jumlah * $harga_jual;
@@ -43,6 +46,7 @@ class Obat extends CI_Controller
 						'jumlah' => $jumlah,
 						'status' => 1,
 						'pendapatan' => $pendapatan,
+						'operator' => $this->session->userdata('nama'),
 						'created_at' => date('Y-m-d  h:m:s')
 					);
 
@@ -54,24 +58,30 @@ class Obat extends CI_Controller
 				}
 			} elseif ($uri == 'masuk') {
 
-				$total = $stok + $jumlah;
-				$harga_jual = get_harga_beli_by_id($id);
-				$pendapatan = $jumlah * $harga_jual;
-				$data = array(
-					'stok' => $total
-				);
+				if ($jumlah > 0) {
+					$total = $stok + $jumlah;
+					$harga_jual = get_harga_beli_by_id($id);
+					$pendapatan = $jumlah * $harga_jual;
+					$data = array(
+						'stok' => $total
+					);
 
-				$data2 = array(
-					'no_invoice' => $this->input->post('no_invoice'),
-					'id_obat' => $id,
-					'jumlah' => $jumlah,
-					'status' => 2,
-					'pendapatan' => $pendapatan,
-					'created_at' => date('Y-m-d  h:m:s')
-				);
+					$data2 = array(
+						'no_invoice' => $this->input->post('no_invoice'),
+						'id_obat' => $id,
+						'jumlah' => $jumlah,
+						'status' => 2,
+						'operator' => $this->session->userdata('nama'),
+						'pendapatan' => $pendapatan,
+						'created_at' => date('Y-m-d  h:m:s')
+					);
 
-				$result = $this->obat_model->update_stok($id, $data);
-				$result2 = $this->obat_model->insert_laporan($data2);
+					$result = $this->obat_model->update_stok($id, $data);
+					$result2 = $this->obat_model->insert_laporan($data2);
+				} else {
+					$result = false;
+					$result2 = false;
+				}
 			} else {
 				$this->session->set_flashdata('abort', 'Anda tidak memiliki akses untuk melakukan aksi ini!');
 				redirect(base_url('obat '));
@@ -201,7 +211,7 @@ class Obat extends CI_Controller
 
 			$this->load->view('layout', $data);
 		} else {
-			$string = str_replace('.', ',', $this->input->post('harga_beli')); // Replaces all spaces with hyphens.
+			$string = str_replace('.', ',', $this->input->post('harga_jual')); // Replaces all spaces with hyphens.
 
 			$harga_jual = preg_replace('/[^A-Za-z0-9\-]/', '', $string);
 
@@ -214,8 +224,8 @@ class Obat extends CI_Controller
 				'nama_obat' => $this->security->xss_clean($this->input->post('nama_obat')),
 				'id_satuan' => $this->security->xss_clean($this->input->post('id_satuan')),
 				'id_kategori' => $this->security->xss_clean($this->input->post('id_kategori')),
-				'harga_beli' => $this->security->xss_clean($harga_jual),
-				'harga_jual' => $this->security->xss_clean($harga_beli),
+				'harga_beli' => $this->security->xss_clean($harga_beli),
+				'harga_jual' => $this->security->xss_clean($harga_jual),
 
 				'created_at' => date('Y-m-d  h:m:s')
 

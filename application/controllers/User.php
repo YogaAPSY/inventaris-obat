@@ -6,13 +6,20 @@ class User extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('satuan_model', 'satuan_model');
+		$this->load->model('auth_model', 'auth_model');
+		if (!$this->session->userdata('is_user_login')) {
+			redirect('auth/login');
+		} elseif ($this->session->userdata('is_user_login') == TRUE && $this->session->userdata('status') == 1) {
+			redirect('dashboard');
+		}
 	}
 
 	public function index()
 	{
-		$data['title'] = 'satuan list';
+		$data['title'] = 'user list';
 		// $data['satuan'] = get_satuan();
+		echo "babi";
+		exit();
 		$data['layout'] = 'user/list_user';
 		$this->load->view('layout', $data);
 	}

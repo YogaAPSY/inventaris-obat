@@ -7,6 +7,12 @@ class Kategori extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('kategori_model', 'kategori_model');
+
+		if (!$this->session->userdata('is_user_login')) {
+			redirect('auth/login');
+		} elseif ($this->session->userdata('is_user_login') == TRUE && $this->session->userdata('status') == 1) {
+			redirect('dashboard');
+		}
 	}
 
 	public function index()

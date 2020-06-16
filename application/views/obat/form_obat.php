@@ -54,7 +54,7 @@
 													<option value="<?= $satu['id_satuan']; ?>" selected> <?= $satu['kode_satuan']; ?> </option>
 
 												<?php else : ?>
-													<option value="<?= $satu['id_satuan']; ?>" selected> <?= $satu['kode_satuan']; ?> </option>
+													<option value="<?= $satu['id_satuan']; ?>"> <?= $satu['kode_satuan']; ?> </option>
 												<?php endif; ?>
 												<!-- <option value="<?= $jenis['value'] ?>"><?= $jenis['nama'] ?></option> -->
 											<?php endforeach; ?>
@@ -78,7 +78,7 @@
 													<option value="<?= $kategori['id_kategori']; ?>" selected> <?= $kategori['nama_kategori']; ?> </option>
 
 												<?php else : ?>
-													<option value="<?= $kategori['id_kategori']; ?>" selected> <?= $kategori['nama_kategori']; ?> </option>
+													<option value="<?= $kategori['id_kategori']; ?>"> <?= $kategori['nama_kategori']; ?> </option>
 												<?php endif; ?>
 												<!-- <option value="<?= $jenis['value'] ?>"><?= $jenis['nama'] ?></option> -->
 											<?php endforeach; ?>

@@ -33,12 +33,14 @@
     						<h2 style="font-size: 22px;color:#ad1455;font-weight: bold;">
     							<center>LIST OBAT</center>
     						</h2> <br><br>
-    						<a href="<?= base_url(); ?>Obat/add">
-    							<button type="button" class="btn btn-info waves-effect">
-    								<i class="material-icons">add</i>
-    								<span>TAMBAH</span>
-    							</button>
-    						</a>
+    						<?php if ($this->session->userdata('status') != 1) : ?>
+    							<a href="<?= base_url(); ?>Obat/add">
+    								<button type="button" class="btn btn-info waves-effect">
+    									<i class="material-icons">add</i>
+    									<span>TAMBAH</span>
+    								</button>
+    							</a>
+    						<?php endif; ?>
     					</div>
 
     					<div class="body">
@@ -48,14 +50,16 @@
     									<tr>
     										<th style="width:30px">No</th>
     										<th>Kode Obat</th>
-    										<th>Satuan</th>
+
     										<th>Kategori</th>
     										<th>Nama Obat</th>
     										<th>Stok</th>
     										<th>Harga Beli</th>
     										<th>Harga Jual</th>
     										<th>Tanggal</th>
-    										<th style="text-align: center;width:100px">ACTION</th>
+    										<?php if ($this->session->userdata('status') != 1) : ?>
+    											<th style="text-align: center;width:100px">ACTION</th>
+    										<?php endif; ?>
     									</tr>
     								</thead>
 
@@ -66,21 +70,23 @@
     										<tr>
     											<td><?= $i++; ?></td>
     											<td><?= $o['kode_obat'] ?></td>
-    											<td><?= get_nama_satuan_by_id($o['id_satuan']) ?></td>
+
     											<td><?= get_nama_kategori_by_id($o['id_kategori']) ?></td>
     											<td><?= $o['nama_obat'] ?></td>
-    											<td><?= $o['stok'] ?></td>
+    											<td><?= $o['stok'] . " " . get_nama_satuan_by_id($o['id_satuan'])  ?></td>
     											<td>Rp. <?= number_format($o['harga_jual']) ?></td>
     											<td>Rp. <?= number_format($o['harga_beli']) ?></td>
     											<td><?= $o['created_at'] ?></td>
-    											<td style="text-align: center;vertical-align: middle;">
-    												<center>
-    													<a href="<?= base_url(); ?>obat/edit/<?= $o['id_obat'] ?>" data-toggle="tooltip" data-placement="top" title="Edit"><i style="color:#00b0e4;" class="material-icons">description</i></a>&nbsp;
-    													<a href="#" title="Tambah Stok" data-id="#" data-toggle="modal" data-target="#ModalTambah<?= $o['id_obat'] ?>"><i style="color:green;" class="material-icons">add_circle_outline</i></a>
-    													<a href="#" title="Kurangi Stok" data-id="#" data-toggle="modal" data-target="#Modal<?= $o['id_obat'] ?>"><i style="color:red;" class="material-icons">remove_circle_outline</i></a>
-    													<a href="#" id="btn_posisi" title="Delete" data-id="#" data-toggle="modal" data-target="#deleteModal"><i style="color:red;" class="material-icons">delete</i></a>
-    												</center>
-    											</td>
+    											<?php if ($this->session->userdata('status') != 1) : ?>
+    												<td style="text-align: center;vertical-align: middle;">
+    													<center>
+    														<a href="<?= base_url(); ?>obat/edit/<?= $o['id_obat'] ?>" data-toggle="tooltip" data-placement="top" title="Edit"><i style="color:#00b0e4;" class="material-icons">description</i></a>&nbsp;
+    														<a href="#" title="Tambah Stok" data-id="#" data-toggle="modal" data-target="#ModalTambah<?= $o['id_obat'] ?>"><i style="color:green;" class="material-icons">add_circle_outline</i></a>
+    														<a href="#" title="Kurangi Stok" data-id="#" data-toggle="modal" data-target="#Modal<?= $o['id_obat'] ?>"><i style="color:red;" class="material-icons">remove_circle_outline</i></a>
+    														<a href="#" id="btn_posisi" title="Delete" data-id="#" data-toggle="modal" data-target="#deleteModal"><i style="color:red;" class="material-icons">delete</i></a>
+    													</center>
+    												</td>
+    											<?php endif; ?>
     										</tr>
 
     										<!-- Kurang Modal-->
@@ -151,8 +157,7 @@
     										function cek(id, obat) {
 
     											var x = document.getElementById("stok" + obat).value;
-    											console.log(x);
-    											console.log(id);
+
     											var y = id;
     											if (x > y) {
     												swal({
@@ -161,7 +166,7 @@
     													showConfirmButton: false,
     													type: 'error',
     												});
-    												$('#stok').val('');
+    												$('#stok' + obat).val('');
     											} else if (x <= 0) {
     												swal({
     													title: "Opps !!!",
@@ -169,7 +174,7 @@
     													showConfirmButton: false,
     													type: 'error',
     												});
-    												$('#stok').val('');
+    												$('#stok' + obat).val('');
     											} else {
 
     											}
@@ -184,7 +189,7 @@
     													showConfirmButton: false,
     													type: 'error',
     												});
-    												$('#stokTambah').val('');
+    												$('#stokTambah' + id).val('');
     											} else {
 
     											}

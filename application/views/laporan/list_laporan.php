@@ -73,9 +73,10 @@
 										<th>Nama Obat</th>
 										<th>Status Transaksi</th>
 										<th>Total</th>
-										<!-- <th>Stok</th> -->
-										<th>Pendapatan</th>
+										<th>Operator</th>
+
 										<th>Tanggal Transaksi</th>
+										<th>Pendapatan</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -89,10 +90,11 @@
 											<td><?= $lapor['no_invoice'] ?></td>
 											<td><?= $lapor['nama_obat'] ?></td>
 											<td><?= ($lapor['status'] == 1) ? '<span style="color:red;">Keluar</span>' : '<span style="color:green;">Masuk</span>';  ?></td>
-											<td><?= $lapor['jumlah'] ?></td>
-											<!-- <td><?= $lapor['stok'] ?></td> -->
-											<td>Rp. <?= number_format($lapor['pendapatan']) ?></td>
+											<td><?= $lapor['jumlah'] . " " . get_nama_satuan_by_id($lapor['id_satuan']) ?></td>
+											<td><?= $lapor['operator'] ?></td>
+
 											<td><?= $lapor['created_at'] ?></td>
+											<td>Rp. <?= number_format($lapor['pendapatan']) ?></td>
 										</tr>
 										<?php if ($lapor['status'] == 2) {
 											$masuk = $masuk + $lapor['pendapatan'];
@@ -106,14 +108,14 @@
 										<td></td>
 										<td></td>
 										<td></td>
-										<!-- <td></td> -->
-										<!-- <td></td> -->
+										<td></td>
+										<td></td>
 
 										<td style="text-align: center;"><b>Total Pendapatan</b></td>
 										<td></td>
-
+										<!-- <td></td>  -->
 										<td>Rp. <?= number_format($keluar - $masuk) ?></td>
-										<td></td>
+										<!-- <td></td> -->
 									</tr>
 								</tfoot>
 							</table>
