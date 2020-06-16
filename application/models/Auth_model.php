@@ -60,4 +60,23 @@ class Auth_model extends CI_Model
 			return false;
 		}
 	}
+
+	public function insert_data($data, $id = 0)
+	{
+		if ($id != 0) {
+			$this->db->where('id_user', $id);
+			$this->db->update('xx_users', $data);
+			return true;
+		} else {
+			$this->db->insert('xx_users', $data);
+			return true;
+		}
+	}
+
+	public function delete($id)
+	{
+		$this->db->where('id_user', $id);
+		$this->db->delete('xx_users');
+		return true;
+	}
 }

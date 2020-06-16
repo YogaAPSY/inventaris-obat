@@ -1,6 +1,26 @@
 <!-- Bootstrap Select Css -->
 <link href="<?= base_url(); ?>assets/AdminBsb/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.28.4/dist/sweetalert2.all.min.js"></script>
+<?php if ($this->session->flashdata('message')) : ?>
+	<script type="text/javascript">
+		swal({
+			title: "BERHASIL !!!",
+			text: "<?php echo $this->session->flashdata('message'); ?>",
+			showConfirmButton: true,
+			type: 'success'
+		});
+	</script>
+<?php endif; ?>
+<?php if ($this->session->flashdata('abort')) : ?>
+	<script type="text/javascript">
+		swal({
+			title: "ERROR !!!",
+			text: "<?php echo $this->session->flashdata('abort'); ?>",
+			showConfirmButton: true,
+			type: 'error'
+		});
+	</script>
+<?php endif; ?>
 <section class="content">
 	<div class="container-fluid">
 		<div class="block-header">
