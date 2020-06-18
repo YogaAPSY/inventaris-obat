@@ -2,26 +2,22 @@
 <html>
 
 <head>
+
 	<meta charset="UTF-8">
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<title>Sign In | Admin </title>
 	<link rel="icon" href="<?= base_url(); ?>assets/login/images/sindi.png" type="image/x-icon">
 	<!-- Favicon-->
 	<link rel="icon" href="<?= base_url(); ?>assets/login/favicon.ico" type="image/x-icon">
-
 	<!-- Google Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
-
 	<!-- Bootstrap Core Css -->
 	<link href="<?= base_url(); ?>assets/login/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
-
 	<!-- Waves Effect Css -->
 	<link href="<?= base_url(); ?>assets/login/plugins/node-waves/waves.css" rel="stylesheet" />
-
 	<!-- Animation Css -->
 	<link href="<?= base_url(); ?>assets/login/plugins/animate-css/animate.css" rel="stylesheet" />
-
 	<!-- Custom Css -->
 	<link href="<?= base_url(); ?>assets/login/css/style.css" rel="stylesheet">
 
@@ -30,30 +26,25 @@
 			margin: auto;
 			max-width: none;
 		}
-
 		.btn .btn-block .bg-pink .waves-effect {
 			border-radius: 62px !important;
 			background: #E91E63 !important;
 			box-shadow: 37px 37px 74px #c61a54 !important,
 				-37px -37px 74px #ff2372 !important;
 		}
-
 		.maxmax {
 			max-width: 360px;
 			margin: auto;
 		}
-
 		.max {
 			max-width: 500px !important;
 			margin: auto;
 			text-align: center;
 		}
-
 		@media only screen and (max-width: 600px) {
 			.max {
 				margin: auto;
 			}
-
 			.card {
 				margin-left: 20px;
 				margin-right: 20px;
@@ -67,7 +58,8 @@
 
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.28.4/dist/sweetalert2.all.min.js"></script>
 
-	<?php if (isset($_SESSION['gagal'])) : ?>
+	<?php if (isset($_SESSION['abort'])) : ?>
+
 		<script type="text/javascript">
 			swal({
 				title: "<span style='color:#1E4ECE; font-size:30px;'>Gagal !!!</span>",
@@ -78,7 +70,7 @@
 			});
 		</script>
 	<?php endif ?>
-	<?php if (isset($_SESSION['berhasil'])) : ?>
+	<?php if (isset($_SESSION['message'])) : ?>
 		<script type="text/javascript">
 			swal({
 				title: "<span style='color:#1E4ECE; font-size:30px;'>Berhasil !!!</span>",
@@ -91,17 +83,21 @@
 	<?php endif ?>
 
 	<br><br><br><br>
+
 	<div class="login-box maxmax">
+
 		<div class="logo">
-			<img src="assets/img/Sindi.png" style="margin-bottom:20px; width:80px; height:80px; position: relative;" class="responsive-image center-block">
+			<img src="<?= base_url(); ?>assets/login/img/apoteker.png" style="margin-bottom:20px; width:120px; height:120px; position: relative;" class="responsive-image center-block">
 			<a href="javascript:void(0);"><b style="font-size: 40px">APOTEKER</b></a>
 			<small style="font-size: 17px">GUDANG APOTEKER KOTA PALEMBANG</small>
 		</div>
+
 		<div class="card" style="border-radius: 25px !important;">
 			<div class="body">
-				<?php $attributes = array('id' => 'login_form', 'method' => 'post'); ?>
 
+				<?php $attributes = array('id' => 'login_form', 'method' => 'post'); ?>
 				<?php echo form_open('auth/login', $attributes); ?>
+
 				<div class="msg" style="margin-top:20px; font-weight: bold; color: red;">Silahkan login terlebih dahulu</div>
 				<div class="input-group">
 					<span class="input-group-addon">
@@ -147,16 +143,12 @@
 
 	<!-- Jquery Core Js -->
 	<script src="<?= base_url(); ?>assets/login/plugins/jquery/jquery.min.js"></script>
-
 	<!-- Bootstrap Core Js -->
 	<script src="<?= base_url(); ?>assets/login/plugins/bootstrap/js/bootstrap.js"></script>
-
 	<!-- Waves Effect Plugin Js -->
 	<script src="<?= base_url(); ?>assets/login/plugins/node-waves/waves.js"></script>
-
 	<!-- Validation Plugin Js -->
 	<script src="<?= base_url(); ?>assets/login/plugins/jquery-validation/jquery.validate.js"></script>
-
 	<!-- Custom Js -->
 	<script src="<?= base_url(); ?>assets/login/js/admin.js"></script>
 	<script src="<?= base_url(); ?>assets/login/js/pages/examples/sign-in.js"></script>
