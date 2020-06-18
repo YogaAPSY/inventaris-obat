@@ -67,22 +67,22 @@
 
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.28.4/dist/sweetalert2.all.min.js"></script>
 
-	<?php if (isset($_SESSION['abort'])) : ?>
+	<?php if (isset($_SESSION['gagal'])) : ?>
 		<script type="text/javascript">
 			swal({
 				title: "<span style='color:#1E4ECE; font-size:30px;'>Gagal !!!</span>",
-				html: "<span style='color:red; font-size:20px;'> <?php echo $this->session->flashdata('abort'); ?></span>",
+				html: "<span style='color:red; font-size:20px;'> <?php echo $this->session->flashdata('gagal'); ?></span>",
 				width: 500,
 				showConfirmButton: true,
 				type: 'error'
 			});
 		</script>
 	<?php endif ?>
-	<?php if (isset($_SESSION['message'])) : ?>
+	<?php if (isset($_SESSION['berhasil'])) : ?>
 		<script type="text/javascript">
 			swal({
 				title: "<span style='color:#1E4ECE; font-size:30px;'>Berhasil !!!</span>",
-				html: "<span style='color:red; font-size:20px;'><?php echo $this->session->flashdata('message'); ?></span>",
+				html: "<span style='color:red; font-size:20px;'><?php echo $this->session->flashdata('berhasil'); ?></span>",
 				width: 500,
 				showConfirmButton: true,
 				type: 'success'
