@@ -26,25 +26,30 @@
 			margin: auto;
 			max-width: none;
 		}
+
 		.btn .btn-block .bg-pink .waves-effect {
 			border-radius: 62px !important;
 			background: #E91E63 !important;
 			box-shadow: 37px 37px 74px #c61a54 !important,
 				-37px -37px 74px #ff2372 !important;
 		}
+
 		.maxmax {
 			max-width: 360px;
 			margin: auto;
 		}
+
 		.max {
 			max-width: 500px !important;
 			margin: auto;
 			text-align: center;
 		}
+
 		@media only screen and (max-width: 600px) {
 			.max {
 				margin: auto;
 			}
+
 			.card {
 				margin-left: 20px;
 				margin-right: 20px;
@@ -63,7 +68,7 @@
 		<script type="text/javascript">
 			swal({
 				title: "<span style='color:#1E4ECE; font-size:30px;'>Gagal !!!</span>",
-				html: "<span style='color:red; font-size:20px;'> <?php echo $this->session->flashdata('gagal'); ?></span>",
+				html: "<span style='color:red; font-size:20px;'> <?php echo $this->session->flashdata('abort'); ?></span>",
 				width: 500,
 				showConfirmButton: true,
 				type: 'error'
@@ -74,7 +79,7 @@
 		<script type="text/javascript">
 			swal({
 				title: "<span style='color:#1E4ECE; font-size:30px;'>Berhasil !!!</span>",
-				html: "<span style='color:red; font-size:20px;'><?php echo $this->session->flashdata('berhasil'); ?></span>",
+				html: "<span style='color:red; font-size:20px;'><?php echo $this->session->flashdata('message'); ?></span>",
 				width: 500,
 				showConfirmButton: true,
 				type: 'success'
