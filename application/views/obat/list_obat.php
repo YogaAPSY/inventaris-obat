@@ -57,9 +57,9 @@
     										<th>Harga Beli</th>
     										<th>Harga Jual</th>
     										<th>Tanggal</th>
-    										<?php if ($this->session->userdata('status') != 1) : ?>
-    											<th style="text-align: center;width:100px">ACTION</th>
-    										<?php endif; ?>
+
+    										<th style="text-align: center;width:100px">ACTION</th>
+
     									</tr>
     								</thead>
 
@@ -77,16 +77,22 @@
     											<td>Rp. <?= number_format($o['harga_jual']) ?></td>
     											<td>Rp. <?= number_format($o['harga_beli']) ?></td>
     											<td><?= $o['created_at'] ?></td>
-    											<?php if ($this->session->userdata('status') != 1) : ?>
-    												<td style="text-align: center;vertical-align: middle;">
+
+    											<td style="text-align: center;vertical-align: middle;">
+    												<?php if ($this->session->userdata('status') != 1) : ?>
     													<center>
     														<a href="<?= base_url(); ?>obat/edit/<?= $o['id_obat'] ?>" data-toggle="tooltip" data-placement="top" title="Edit"><i style="color:#00b0e4;" class="material-icons">description</i></a>&nbsp;
     														<a href="#" title="Tambah Stok" data-id="#" data-toggle="modal" data-target="#ModalTambah<?= $o['id_obat'] ?>"><i style="color:green;" class="material-icons">add_circle_outline</i></a>
     														<a href="#" title="Kurangi Stok" data-id="#" data-toggle="modal" data-target="#Modal<?= $o['id_obat'] ?>"><i style="color:red;" class="material-icons">remove_circle_outline</i></a>
     														<a href="#" id="btn_posisi" title="Delete" data-id="#" data-toggle="modal" data-target="#deleteModal"><i style="color:red;" class="material-icons">delete</i></a>
     													</center>
-    												</td>
-    											<?php endif; ?>
+    												<?php else : ?>
+    													<center>
+    														<a href="#" title="Kurangi Stok" data-id="#" data-toggle="modal" data-target="#Modal<?= $o['id_obat'] ?>"><i style="color:red;" class="material-icons">remove_circle_outline</i></a>
+    													</center>
+    												<?php endif; ?>
+    											</td>
+
     										</tr>
 
     										<!-- Kurang Modal-->
