@@ -5,7 +5,8 @@ Aplikasi Inventaris Obat/Barang sederhana menggunakan Codeigniter 3(CI 3) dan te
 
 # cara install
 > git clone https://github.com/YogaAPSY/inventaris-obat atau download file.
-> import file sql yang ada di project.
+# database
+> import file sql yang ada di project dan buat database dengan nama inventaris-obat
 
 # Akun login
 - Admin
