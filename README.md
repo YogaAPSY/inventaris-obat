@@ -1,5 +1,7 @@
-# bimbel-online
+# Inventaris Obat
 Aplikasi Inventaris Obat/Barang sederhana menggunakan Codeigniter 3(CI 3) dan template Admin BSB(Material Design Template)
+
+![alt text](https://raw.githubusercontent.com/YogaAPSY/inventaris-obat/master/Screenshot_77.png)
 
 # cara install
 > git clone https://github.com/YogaAPSY/inventaris-obat atau download file.
@@ -17,3 +19,5 @@ Aplikasi Inventaris Obat/Barang sederhana menggunakan Codeigniter 3(CI 3) dan te
 - Pegawai
 **username : pegawai**
 **password : qwerty123**
+
+**Don't forget click :star: for my :heart: github.**
